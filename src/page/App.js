@@ -20,11 +20,12 @@ function App() {
       </Navbar>
 
       <Switch>
-        <Route exact path="/" component={Main} />
         <Route path="/detail" component={Detail} />
         <Route path="/:id">
           <div>아무거나적었을때 이거 보여주셈</div>
         </Route>
+        <Route path="/" component={Main} />
+
       </Switch>
     </div>
   );
