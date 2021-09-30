@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+li {
+  text-align: center;
+}
+
 .background {
   background-image: url('../images/낮_썸네일.png');
   background-size: cover;
