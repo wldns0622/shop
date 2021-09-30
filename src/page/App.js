@@ -1,30 +1,10 @@
-import { useState } from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
-import styled from 'styled-components';
 import '../style/app.css'
-import data from '../data';
-import Shoes from '../components/Shoes';
+import Main from './Main';
+import Detail from './Detail';
+import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Link, Route, Switch } from 'react-router-dom';
 
 function App() {
-
-  let [shoes, setShoes] = useState(data);
-
-  const Wrapper = styled.section`
-    padding: 4em;
-    background-color: #eceef2;
-    text-align: center;
-  `;
-
-  const Title = styled.h1`
-    color: #4572fe;
-    font-size: 4rem;
-    font-weight: 700;
-  `;
-
-  const Description = styled.p`
-    margin: 1em 0;
-    font-size: 1.2em;
-  `;
 
   return (
     <div className="App">
@@ -39,24 +19,8 @@ function App() {
         </Container>
       </Navbar>
 
-      <Wrapper className="background">
-        <Title>
-          Hello World!
-        </Title>
-        <Description>
-          helloodjadlajdlkasjdklsa
-        </Description>
-        <Button variant="primary" size="lg">
-          Large button
-        </Button>
-      </Wrapper>
-
-      <div className="container">
-        <ul style={{listStyle: 'none'}} className="row">
-          {shoes.map((item) => (<Shoes key={item.id} data={item} />))}
-        </ul>
-      </div>
-
+      <Route exact path="/" component={Main} />
+      <Route path="/detail" component={Detail} />
     </div>
   );
 }
