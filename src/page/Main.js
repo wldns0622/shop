@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import data from '../data';
 import Shoes from '../components/Shoes';
 
 const Wrapper = styled.section`
@@ -21,8 +20,7 @@ margin: 1em 0;
 font-size: 1.2em;
 `;
 
-function Main() {
-  let [shoes, setShoes] = useState(data);
+function Main({shoes}) {
 
 
   return (

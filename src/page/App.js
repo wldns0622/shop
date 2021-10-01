@@ -1,10 +1,15 @@
+import React, {useState} from 'react';
 import '../style/app.css'
 import Main from './Main';
 import Detail from './Detail';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 
+import data from '../data';
+
+
 function App() {
+  let [shoes, setShoes] = useState(data);
 
   return (
     <div className="App">
@@ -20,11 +25,15 @@ function App() {
       </Navbar>
 
       <Switch>
-        <Route path="/detail" component={Detail} />
+        <Route path="/detail/:id" >
+          <Detail shoes={shoes} />
+        </Route>
         <Route path="/:id">
           <div>아무거나적었을때 이거 보여주셈</div>
         </Route>
-        <Route path="/" component={Main} />
+        <Route path="/">
+          <Main shoes={shoes} />
+        </Route>
 
       </Switch>
     </div>
