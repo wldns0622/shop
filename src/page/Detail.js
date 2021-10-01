@@ -1,5 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import '../style/Detail.scss';
 
 let Box = styled.div`
   padding: 20px;
@@ -20,8 +21,11 @@ function Detail({shoes}) {
   return (
     <div className="container">
       <Box>
-        <Title color="blue">Detail</Title>
+        <Title className="red" color="blue">Detail</Title>
       </Box>
+      <div className="my-alert2">
+        <p>재고가 얼마 남지 않았습니다</p>
+      </div>
       <div className="row">
         <div className="col-md-6">
           <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" alt="shoes"/>
