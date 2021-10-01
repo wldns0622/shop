@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Stock from '../components/Stock';
 import '../style/Detail.scss';
 
 let Box = styled.div`
@@ -12,7 +13,7 @@ let Title = styled.h4`
   color: ${ props => props.color }
 `
 
-function Detail({shoes}) {
+function Detail({shoes, stock, setStock}) {
   let [alert, setAlert] = useState(true);
   let [inputValue, setInputValue] = useState('');
 
@@ -46,14 +47,21 @@ function Detail({shoes}) {
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{shoe.title}</h4>
           <p>{shoe.content}</p>
-          <p>{shoe.price}</p>
-          <button className="btn btn-danger">주문하기</button> 
+          <p>{shoe.price}원</p>
+
+          <Stock stock={stock}/>          
+
+          <button className="btn btn-danger" onClick={() => {
+            let stockArr = [...stock];
+            stockArr[0]--;
+            setStock(stockArr);
+          }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=> { history.goBack() }}>뒤로가기</button> 
         </div>
       </div>
       {
         alert 
-        ? (<div className="my-alert2">
+        ? (<div className="my-alert">
           <p>재고가 얼마 남지 않았습니다</p>
         </div>) 
         : null

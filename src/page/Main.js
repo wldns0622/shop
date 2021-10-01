@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import Shoes from '../components/Shoes';
+import axios from 'axios';
 
 const Wrapper = styled.section`
 padding: 4em;
@@ -20,7 +21,7 @@ margin: 1em 0;
 font-size: 1.2em;
 `;
 
-function Main({shoes}) {
+function Main({shoes, setShoes}) {
 
 
   return (
@@ -38,9 +39,20 @@ function Main({shoes}) {
       </Wrapper>
       <div className="container">
         <ul style={{listStyle: 'none'}} className="row">
-          {shoes.map((item) => (<Shoes key={item.id} data={item} />))}
+          {shoes?.map((item) => (<Shoes key={item.id} data={item} />))}
         </ul>
       </div>
+
+      <button className="btn btn-primary" onClick={() => {
+        axios.get(`https://codingapple1.github.io/shop/data2.json`)
+        .then((res) => {
+          setShoes([...shoes, ...res.data]);
+        })
+        .catch((rej) =>{
+          console.log(rej);
+        })
+        
+      }}>더 보기</button>
     </>
   )
 }

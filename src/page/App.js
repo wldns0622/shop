@@ -10,6 +10,7 @@ import data from '../data';
 
 function App() {
   let [shoes, setShoes] = useState(data);
+  let [stock, setStock] = useState([10, 11, 12]);
 
   return (
     <div className="App">
@@ -26,13 +27,13 @@ function App() {
 
       <Switch>
         <Route path="/detail/:id" >
-          <Detail shoes={shoes} />
+          <Detail shoes={shoes} stock={stock} setStock={setStock}/>
         </Route>
         <Route path="/:id">
           <div>아무거나적었을때 이거 보여주셈</div>
         </Route>
         <Route path="/">
-          <Main shoes={shoes} />
+          <Main shoes={shoes} setShoes={setShoes} />
         </Route>
 
       </Switch>
