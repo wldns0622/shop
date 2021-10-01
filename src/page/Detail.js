@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import '../style/Detail.scss';
@@ -12,6 +13,18 @@ let Title = styled.h4`
 `
 
 function Detail({shoes}) {
+  let [alert, setAlert] = useState(true);
+  let [inputValue, setInputValue] = useState('');
+
+  useEffect(() => {
+    // 2초후에 알림창 사라지게 하기
+    let timer = setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [alert]);
+
   let history = useHistory();
   let { id } = useParams();
   let [shoe] = shoes.filter((item) => {
@@ -23,9 +36,9 @@ function Detail({shoes}) {
       <Box>
         <Title className="red" color="blue">Detail</Title>
       </Box>
-      <div className="my-alert2">
-        <p>재고가 얼마 남지 않았습니다</p>
-      </div>
+
+      <input onChange={(e) => setInputValue(e.target.value)} value={inputValue}/>
+
       <div className="row">
         <div className="col-md-6">
           <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" alt="shoes"/>
@@ -38,6 +51,13 @@ function Detail({shoes}) {
           <button className="btn btn-danger" onClick={()=> { history.goBack() }}>뒤로가기</button> 
         </div>
       </div>
+      {
+        alert 
+        ? (<div className="my-alert2">
+          <p>재고가 얼마 남지 않았습니다</p>
+        </div>) 
+        : null
+      }
     </div> 
   )
 }
