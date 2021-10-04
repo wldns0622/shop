@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import '../style/app.css'
 import Main from './Main';
 import Detail from './Detail';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import data from '../data';

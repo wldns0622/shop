@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Navbar, Container, Nav, Button } from 'react-bootstrap';
+import React from 'react';
+import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import Shoes from '../components/Shoes';
 import axios from 'axios';
