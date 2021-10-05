@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
+import { Nav } from 'react-bootstrap';
+import TabContent from '../components/TabContent';
 import styled from 'styled-components';
 import Stock from '../components/Stock';
 import '../style/Detail.scss';
@@ -16,6 +18,7 @@ let Title = styled.h4`
 function Detail({shoes, stock, setStock}) {
   let [alert, setAlert] = useState(true);
   let [inputValue, setInputValue] = useState('');
+  let [tab, setTab] = useState(0);
 
   useEffect(() => {
     // 2초후에 알림창 사라지게 하기
@@ -59,6 +62,18 @@ function Detail({shoes, stock, setStock}) {
           <button className="btn btn-danger" onClick={()=> { history.goBack() }}>뒤로가기</button> 
         </div>
       </div>
+
+      <Nav className="my-5" variant="tabs" defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link eventKey="link-0" onClick={() => { setTab(0) }}>Active</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1" onClick={() => { setTab(1) }}>Option 2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      
+      <TabContent selectTab={tab}/>
+
       {
         alert 
         ? (<div className="my-alert">
