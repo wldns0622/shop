@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import { Table, Button } from 'react-bootstrap';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import CartItem from '../components/CartItem';
 
 const Cart = ({state}) => {
+
   let [isAlert, setIsAlert] = useState(true);
   const dispatch = useDispatch();
 
@@ -28,8 +29,6 @@ const Cart = ({state}) => {
       <Button onClick={() => { setIsAlert(false) }}>닫기</Button>
     </div>) 
     : null}
-
-    
   </>
   )
 }

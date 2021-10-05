@@ -21,7 +21,7 @@ function App() {
         <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/detail">Detail</Nav.Link>
+          <Nav.Link as={Link} to="/detail/1">Detail</Nav.Link>
           <Nav.Link as={Link} to="/cart" >Cart</Nav.Link>
         </Nav>
         </Container>

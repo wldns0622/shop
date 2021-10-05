@@ -5,6 +5,7 @@ import TabContent from '../components/TabContent';
 import styled from 'styled-components';
 import Stock from '../components/Stock';
 import '../style/Detail.scss';
+import { connect} from 'react-redux';
 
 import { CSSTransition } from 'react-transition-group';
 
@@ -17,7 +18,7 @@ let Title = styled.h4`
   color: ${ props => props.color }
 `
 
-function Detail({shoes, stock, setStock}) {
+function Detail({shoes, stock, setStock, dispatch}) {
   let [alert, setAlert] = useState(true);
   let [inputValue, setInputValue] = useState('');
   let [tab, setTab] = useState(0);
@@ -61,6 +62,8 @@ function Detail({shoes, stock, setStock}) {
             let stockArr = [...stock];
             stockArr[0]--;
             setStock(stockArr);
+            dispatch({type: '항목추가', payload : {id:2 , name:"새로운상품" , quan: 1}});
+            history.push('/cart');
           }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=> { history.goBack() }}>뒤로가기</button> 
         </div>
@@ -90,4 +93,11 @@ function Detail({shoes, stock, setStock}) {
   )
 }
 
-export default Detail;
+function stateToProps(state) {
+  return {
+    state: state.reducer,
+    alert: state.alertReducer,
+  }
+}
+
+export default connect(stateToProps)(Detail);
