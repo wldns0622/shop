@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { connect, useDispatch } from 'react-redux';
 import CartItem from '../components/CartItem';
 
-const Cart = ({state, isAlert}) => {
+const Cart = ({state}) => {
+  let [isAlert, setIsAlert] = useState(true);
   const dispatch = useDispatch();
 
   return (
@@ -24,7 +25,7 @@ const Cart = ({state, isAlert}) => {
     { isAlert 
     ? (<div className="my-alert">
       <p>지금 구매하시면 신규할인 20%</p>
-      <Button onClick={() => { dispatch({type: '닫기'})}}>닫기</Button>
+      <Button onClick={() => { setIsAlert(false) }}>닫기</Button>
     </div>) 
     : null}
 
@@ -36,7 +37,7 @@ const Cart = ({state, isAlert}) => {
 function stateToProps(state) {
   return { 
     state: state.reducer,
-    isAlert: state.alertReducer
+    // isAlert: state.alertReducer
   }
 }
 

@@ -18,10 +18,10 @@ export function reducer(state = initialData, action) {
   }
 }
 
-export function alertReducer(state = true, action) {
-  if(action.type === "닫기") {
-    return false;
-  } else {
-    return true;
-  }
-}
+// export function alertReducer(state = true, action) {
+//   if(action.type === "닫기") {
+//     return false;
+//   } else {
+//     return true;
+//   }
+// }

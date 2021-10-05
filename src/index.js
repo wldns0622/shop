@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './page/App';
-import { reducer, alertReducer } from './reducer/reducer';
+import { reducer } from './reducer/reducer';
 
 // HashRouter 대체 가능
 // HashRouter은 조금더 라우팅을 안정하게 할 수 있음
@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { combineReducers, createStore } from 'redux';
 
-let store = createStore(combineReducers({reducer, alertReducer}));
+let store = createStore(combineReducers({reducer}));
 
 ReactDOM.render(
   <React.StrictMode>
