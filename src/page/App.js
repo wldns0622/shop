@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import '../style/app.css'
 import Main from './Main';
 import Detail from './Detail';
+import Cart from './Cart';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ function App() {
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/detail">Detail</Nav.Link>
-          <Nav.Link >Pricing</Nav.Link>
+          <Nav.Link as={Link} to="/cart" >Cart</Nav.Link>
         </Nav>
         </Container>
       </Navbar>
@@ -29,6 +30,9 @@ function App() {
       <Switch>
         <Route path="/detail/:id" >
             <Detail shoes={shoes} stock={stock} setStock={setStock}/>
+        </Route>
+        <Route path="/cart">
+          <Cart></Cart>
         </Route>
         <Route path="/:id">
           <div>아무거나적었을때 이거 보여주셈</div>

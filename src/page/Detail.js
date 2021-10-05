@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import Stock from '../components/Stock';
 import '../style/Detail.scss';
 
+import { CSSTransition } from 'react-transition-group';
+
 let Box = styled.div`
   padding: 20px;
 `
@@ -19,6 +21,7 @@ function Detail({shoes, stock, setStock}) {
   let [alert, setAlert] = useState(true);
   let [inputValue, setInputValue] = useState('');
   let [tab, setTab] = useState(0);
+  let [aniSwitch, setAniSwitch] = useState(false);
 
   useEffect(() => {
     // 2초후에 알림창 사라지게 하기
@@ -65,14 +68,16 @@ function Detail({shoes, stock, setStock}) {
 
       <Nav className="my-5" variant="tabs" defaultActiveKey="link-0">
         <Nav.Item>
-          <Nav.Link eventKey="link-0" onClick={() => { setTab(0) }}>Active</Nav.Link>
+          <Nav.Link eventKey="link-0" onClick={() => { setAniSwitch(false); setTab(0) }}>Active</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="link-1" onClick={() => { setTab(1) }}>Option 2</Nav.Link>
+          <Nav.Link eventKey="link-1" onClick={() => { setAniSwitch(false); setTab(1) }}>Option 2</Nav.Link>
         </Nav.Item>
       </Nav>
       
-      <TabContent selectTab={tab}/>
+      <CSSTransition in={aniSwitch} classNames="wow" timeout={500}>
+        <TabContent selectTab={tab} setAniSwitch={setAniSwitch}/>
+      </CSSTransition>
 
       {
         alert 

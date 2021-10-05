@@ -13,6 +13,16 @@ $mainColor: #ff0000;
 //   }
 // }
 
+// animation 시작때 적용할 css
+.wow-enter {
+  opacity: 0;
+}
+// animation 동작할때 적용할 css
+.wow-enter-active {
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
 @mixin 함수() {
   background-color: #eeeeee;
   padding: 20px;
