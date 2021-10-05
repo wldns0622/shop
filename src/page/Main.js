@@ -23,7 +23,6 @@ font-size: 1.2em;
 
 function Main({shoes, setShoes}) {
 
-
   return (
     <>
       <Wrapper className="background">
@@ -38,6 +37,7 @@ function Main({shoes, setShoes}) {
         </Button>
       </Wrapper>
       <div className="container">
+
         <ul style={{listStyle: 'none'}} className="row">
           {shoes?.map((item) => (<Shoes key={item.id} data={item} />))}
         </ul>

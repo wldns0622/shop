@@ -7,6 +7,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 
 import data from '../data';
 
+export let stockContext = React.createContext();
 
 function App() {
   let [shoes, setShoes] = useState(data);
@@ -27,13 +28,15 @@ function App() {
 
       <Switch>
         <Route path="/detail/:id" >
-          <Detail shoes={shoes} stock={stock} setStock={setStock}/>
+            <Detail shoes={shoes} stock={stock} setStock={setStock}/>
         </Route>
         <Route path="/:id">
           <div>아무거나적었을때 이거 보여주셈</div>
         </Route>
         <Route path="/">
-          <Main shoes={shoes} setShoes={setShoes} />
+          <stockContext.Provider value={stock}>
+            <Main shoes={shoes} setShoes={setShoes} />
+          </stockContext.Provider>
         </Route>
 
       </Switch>
