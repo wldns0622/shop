@@ -27,13 +27,13 @@ function Main({shoes, setShoes}) {
     <>
       <Wrapper className="background">
         <Title>
-          Hello World!
+          Good Shoes
         </Title>
         <Description>
-          helloodjadlajdlkasjdklsa
+          다양한 제품들이 있습니다
         </Description>
         <Button variant="primary" size="lg">
-          Large button
+          Contact Me
         </Button>
       </Wrapper>
       <div className="container">
