@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState, memo} from 'react';
 import { Table, Button } from 'react-bootstrap';
 import { connect, useDispatch, useSelector } from 'react-redux';
 import CartItem from '../components/CartItem';
@@ -29,9 +29,29 @@ const Cart = ({state}) => {
       <Button onClick={handleClose}>닫기</Button>
     </div>) 
     : null}
+    <Parent 이름="존박1" 나이="20"></Parent>
   </>
   )
 }
+
+function Parent(props) {
+  return (
+    <div>
+      <Child1 이름={props.이름} />
+      <Child2 나이={props.나이} />
+    </div>
+  )
+}
+
+function Child1() {
+  useEffect(() => {console.log('렌더링됨1')});
+  return <div>1111</div>
+}
+
+const Child2 = memo(function() {
+  useEffect(() => {console.log('렌더링됨2')});
+  return <div>2222</div>
+});
 
 function stateToProps(state) {
   return { 
