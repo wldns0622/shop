@@ -7,7 +7,7 @@ const Cart = ({state}) => {
 
   let [isAlert, setIsAlert] = useState(true);
   const dispatch = useDispatch();
-
+  const handleClose = () => { setIsAlert(false) }
   return (
     <>
     <Table striped bordered hover size="sm">
@@ -20,13 +20,13 @@ const Cart = ({state}) => {
         </tr>
       </thead>
       <tbody>
-        {state?.map((item, idx) => <CartItem key={idx+item.title} item={item}/>)}
+        {state?.map((item, idx) => <CartItem key={idx.toString()+item.title} item={item} idx={idx}/>)}
       </tbody>
     </Table>
     { isAlert 
     ? (<div className="my-alert">
       <p>지금 구매하시면 신규할인 20%</p>
-      <Button onClick={() => { setIsAlert(false) }}>닫기</Button>
+      <Button onClick={handleClose}>닫기</Button>
     </div>) 
     : null}
   </>
@@ -36,7 +36,6 @@ const Cart = ({state}) => {
 function stateToProps(state) {
   return { 
     state: state.reducer,
-    // isAlert: state.alertReducer
   }
 }
 

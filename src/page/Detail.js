@@ -49,7 +49,7 @@ function Detail({shoes, stock, setStock, dispatch}) {
 
       <div className="row">
         <div className="col-md-6">
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" alt="shoes"/>
+          <img src={`https://codingapple1.github.io/shop/shoes${shoe.id + 1}.jpg`} width="100%" alt="shoes"/>
         </div>
         <div className="col-md-6 mt-4">
           <h4 className="pt-5">{shoe.title}</h4>
@@ -62,7 +62,7 @@ function Detail({shoes, stock, setStock, dispatch}) {
             let stockArr = [...stock];
             stockArr[0]--;
             setStock(stockArr);
-            dispatch({type: '항목추가', payload : {id:2 , name:"새로운상품" , quan: 1}});
+            dispatch({type: '항목추가', payload : {id: shoe.id , name:shoe.title , quan: 1}});
             history.push('/cart');
           }}>주문하기</button> 
           <button className="btn btn-danger" onClick={()=> { history.goBack() }}>뒤로가기</button> 

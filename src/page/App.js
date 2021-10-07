@@ -1,12 +1,21 @@
-import React, {useState} from 'react';
-import '../style/app.css'
-import Main from './Main';
-import Detail from './Detail';
-import Cart from './Cart';
+import React, {useState, lazy, Suspense} from 'react';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import { Link, Route, Switch } from 'react-router-dom';
 
 import data from '../data';
+import '../style/app.css'
+
+
+// import Main from './Main';
+// import Detail from './Detail';
+// import Cart from './Cart';
+
+let Main = lazy(() => import('./Main.js') );
+let Detail = lazy(() => import('./Detail.js') );
+let Cart = lazy(() => import('./Cart.js') );
+
+
+
 
 export let stockContext = React.createContext();
 
@@ -21,7 +30,6 @@ function App() {
         <Navbar.Brand href="#home">ShoeShop</Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/detail/1">Detail</Nav.Link>
           <Nav.Link as={Link} to="/cart" >Cart</Nav.Link>
         </Nav>
         </Container>
@@ -29,18 +37,24 @@ function App() {
 
       <Switch>
         <Route path="/detail/:id" >
+          <Suspense fallback={<div>로딩중이에요</div>}>
             <Detail shoes={shoes} stock={stock} setStock={setStock}/>
+          </Suspense>
         </Route>
         <Route path="/cart">
-          <Cart></Cart>
+          <Suspense fallback={<div>로딩중이에요</div>}>
+            <Cart />
+          </Suspense>
         </Route>
         <Route path="/:id">
-          <div>아무거나적었을때 이거 보여주셈</div>
+          <div>잘못된 요청입니다!</div>
         </Route>
         <Route path="/">
-          <stockContext.Provider value={stock}>
-            <Main shoes={shoes} setShoes={setShoes} />
-          </stockContext.Provider>
+          <Suspense fallback={<div>로딩중이에요</div>}>
+            <stockContext.Provider value={stock}>
+              <Main shoes={shoes} setShoes={setShoes} />
+            </stockContext.Provider>
+          </Suspense>
         </Route>
 
       </Switch>
